@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Admin.AdminController">
+   <children>
+      <TabPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: smokewhite;" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Admin">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #83eeff;">
+                     <children>
+                        <HBox layoutX="-2.0" layoutY="131.0" prefHeight="558.0" prefWidth="1283.0" style="-fx-background-color: smokewhite;">
+                           <children>
+                              <TableView fx:id="DoktorTable" prefHeight="476.0" prefWidth="1280.0">
+                                <columns>
+                                  <TableColumn fx:id="logDoktor" prefWidth="240.80001425743103" text="Korisničko Ime" />
+                                  <TableColumn fx:id="lozinkaDok" prefWidth="260.0" text="Lozinka" />
+                                    <TableColumn fx:id="imeDok" prefWidth="272.5333557128906" text="Ime Prezime" />
+                                    <TableColumn fx:id="odjelDok" prefWidth="257.33319091796875" text="Odjel" />
+                                    <TableColumn fx:id="opisDok" prefWidth="250.666748046875" text="Opis" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </HBox>
+                        <ImageView fitHeight="112.0" fitWidth="122.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Images/Admin.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="LogiraniAdmin" layoutX="118.0" layoutY="35.0" text="Admin:">
+                           <font>
+                              <Font name="Bookman Old Style Bold Italic" size="20.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="79.0" fitWidth="75.0" layoutX="822.0" layoutY="18.0" onMouseClicked="#addDoktor" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Images/Adding.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="61.0" fitWidth="63.0" layoutX="944.0" layoutY="12.0" onMouseClicked="#editDoktor" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Images/Edit.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="64.0" fitWidth="99.0" layoutX="1070.0" layoutY="11.0" onMouseClicked="#dellDoktor" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Images/Dell.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="822.0" layoutY="84.0" text="Dodaj">
+                           <font>
+                              <Font name="Bookman Old Style Bold Italic" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="944.0" layoutY="80.0" text="Uredi">
+                           <font>
+                              <Font name="Bookman Old Style Bold Italic" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="1070.0" layoutY="80.0" text="Ukloni">
+                           <font>
+                              <Font name="Bookman Old Style Bold Italic" size="20.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="LogoutBtn" layoutX="118.0" layoutY="78.0" mnemonicParsing="false" onMouseClicked="#Logout" text="Logout">
+                           <font>
+                              <Font name="Bookman Old Style Bold Italic" size="18.0" />
+                           </font>
+                        </Button>
+                        <ImageView fitHeight="72.0" fitWidth="73.0" layoutX="1193.0" layoutY="12.0" onMouseClicked="#loadAllDoktors" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Images/Refresh.jpg" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="1194.0" layoutY="80.0" text="Osvježi">
+                           <font>
+                              <Font name="Bookman Old Style Bold Italic" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="Adminname" layoutX="207.0" layoutY="36.0">
+                           <font>
+                              <Font name="Bookman Old Style Bold Italic" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
