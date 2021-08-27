@@ -49,19 +49,6 @@
             <Insets left="10.0" right="10.0" top="10.0" />
          </VBox.margin>
       </HBox>
-      <HBox layoutX="10.0" layoutY="111.0">
-         <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Uloga:" wrappingWidth="129.33673477172852">
-               <font>
-                  <Font name="Bookman Old Style Bold Italic" size="15.0" />
-               </font>
-            </Text>
-            <ComboBox fx:id="addUloga" prefWidth="150.0" promptText="Uloga" />
-         </children>
-         <VBox.margin>
-            <Insets left="10.0" right="10.0" top="10.0" />
-         </VBox.margin>
-      </HBox>
       <HBox layoutX="20.0" layoutY="184.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ime Prezime:" wrappingWidth="129.33673477172852">
@@ -101,12 +88,25 @@
             <Insets left="10.0" right="10.0" top="10.0" />
          </VBox.margin>
       </HBox>
+      <HBox layoutX="10.0" layoutY="111.0" visible="false">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Uloga:" wrappingWidth="129.33673477172852">
+               <font>
+                  <Font name="Bookman Old Style Bold Italic" size="15.0" />
+               </font>
+            </Text>
+            <ComboBox fx:id="addUloga" prefWidth="150.0" promptText="Uloga" />
+         </children>
+         <VBox.margin>
+            <Insets left="10.0" right="10.0" top="10.0" />
+         </VBox.margin>
+      </HBox>
       <Button mnemonicParsing="false" onMouseClicked="#save" text="Spremi">
          <font>
             <Font name="Bookman Old Style Bold Italic" size="20.0" />
          </font>
          <VBox.margin>
-            <Insets right="100.0" top="30.0" />
+            <Insets right="100.0" />
          </VBox.margin>
       </Button>
       <Button mnemonicParsing="false" onMouseClicked="#clean" text="Očisti">

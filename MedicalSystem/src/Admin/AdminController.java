@@ -64,7 +64,6 @@ public class AdminController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            Adminname.setText(imeDok.getText());
 
             con = DbConnection.getConnection();
             doktorList = FXCollections.observableArrayList();
@@ -89,6 +88,22 @@ public class AdminController implements Initializable{
 
         DoktorTable.setItems(null);
         DoktorTable.setItems(doktorList);
+    }
+
+    // Ime administratora
+    public void ImeAdmina(int parametar){
+        try {
+            PreparedStatement prep = con.prepareStatement("SELECT Ime_Prezime FROM administrator WHERE id_korisnika = ?");
+            prep.setInt(1,parametar);
+            ResultSet rs = prep.executeQuery();
+            while (rs.next()){
+                LogiraniAdmin.setText(rs.getString(1));
+            }
+            con.close();
+
+        }catch (Exception e){
+            e.getMessage();
+        }
     }
 
     // Osvježavanje tablice svih doktora

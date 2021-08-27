@@ -115,6 +115,16 @@ public class Controller implements Initializable {
 
             AdminController adminController = adminLoader.getController();
 
+            Connection con = DbConnection.getConnection();
+            PreparedStatement prep = con.prepareStatement("SELECT korisnik_id FROM korisnik WHERE Korisnicko_ime LIKE ?");
+            prep.setString(1,Username.getText());
+            ResultSet rs = prep.executeQuery();
+            int IDk = 0;
+            while (rs.next()){
+                IDk = rs.getInt(1);
+            }
+            adminController.ImeAdmina(IDk);
+
             Scene adminScene = new Scene(adminRoot, 1280, 720);
             adminStage.setScene(adminScene);
             adminStage.setResizable(false);
