@@ -69,7 +69,8 @@ public class Controller implements Initializable {
             }else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(null);
-                alert.setContentText("Molimo vas popunite sva polja.(Šifra mora biti minimum 6 karaktera)");
+                alert.setContentText("Došlo je do greške.\n" +
+                        "Provjerite jeste li dobro popunili sva polja i izabrali ulogu.");
                 alert.showAndWait();
             }
 
@@ -77,7 +78,7 @@ public class Controller implements Initializable {
             e.getMessage();
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
-            alert.setContentText("Molimo vas popunite sva polja.(Šifra mora biti minimum 6 karaktera)");
+            alert.setContentText("Molimo vas popunite sva polja i odaberite ulogu.(Šifra mora biti minimum 6 karaktera)");
             alert.showAndWait();
         }
     }
@@ -100,7 +101,7 @@ public class Controller implements Initializable {
             while (rs.next()){
                 IDl = rs.getInt(1);
             }
-            //doktorController.ImeDoktora(IDl);
+            doktorController.ImeDoktora(IDl);
             con.close();
 
             Scene doktorScene = new Scene(doktorRoot, 1280, 720);

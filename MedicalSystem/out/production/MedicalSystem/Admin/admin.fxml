@@ -38,7 +38,7 @@
                               <Image url="@Images/Admin.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="LogiraniAdmin" layoutX="118.0" layoutY="35.0" text="Admin:">
+                        <Label fx:id="LogiraniAdmin" layoutX="118.0" layoutY="35.0" text="Admin:" underline="true">
                            <font>
                               <Font name="Bookman Old Style Bold Italic" size="20.0" />
                            </font>
