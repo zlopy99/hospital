@@ -88,10 +88,20 @@ public class Controller implements Initializable {
             Stage doktorStage = new Stage();
             //Parent doktorRoot = FXMLLoader.load(getClass().getResource("/Doktor/doktor.fxml"));
             //Pane doktorRoot = (Pane)doktorLoader.load(getClass().getResource("/Doktor/doktor.fxml").openStream());
-            FXMLLoader doktorLoader = new FXMLLoader(getClass().getResource("/Admin/admin.fxml"));
+            FXMLLoader doktorLoader = new FXMLLoader(getClass().getResource("/Doktor/doktor.fxml"));
             Parent doktorRoot = (Parent) doktorLoader.load();
 
             DoktorController doktorController = doktorLoader.getController();
+            Connection con = DbConnection.getConnection();
+            PreparedStatement prep = con.prepareStatement("SELECT korisnik_id FROM korisnik WHERE Korisnicko_ime LIKE ?");
+            prep.setString(1,Username.getText());
+            ResultSet rs = prep.executeQuery();
+            int IDl = 0;
+            while (rs.next()){
+                IDl = rs.getInt(1);
+            }
+            //doktorController.ImeDoktora(IDl);
+            con.close();
 
             Scene doktorScene = new Scene(doktorRoot, 1280, 720);
             doktorStage.setScene(doktorScene);
@@ -101,6 +111,7 @@ public class Controller implements Initializable {
 
         }catch (Exception e){
             e.getMessage();
+            System.out.println(e);
         }
     }
 
@@ -124,6 +135,7 @@ public class Controller implements Initializable {
                 IDk = rs.getInt(1);
             }
             adminController.ImeAdmina(IDk);
+            con.close();
 
             Scene adminScene = new Scene(adminRoot, 1280, 720);
             adminStage.setScene(adminScene);

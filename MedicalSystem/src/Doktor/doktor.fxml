@@ -1,14 +1,139 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Doktor.DoktorController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Doktor.DoktorController">
+   <children>
+      <TabPane prefHeight="720.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Doktor Profil">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <HBox prefHeight="690.0" prefWidth="1280.0">
+                           <children>
+                              <VBox prefHeight="690.0" prefWidth="467.0" style="-fx-background-color: #83eeff;">
+                                 <children>
+                                    <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                       <children>
+                                          <ImageView fitHeight="175.0" fitWidth="160.0" layoutX="14.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@Images/Doctor.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label layoutX="176.0" layoutY="89.0" text="Doktor:">
+                                             <font>
+                                                <Font name="Bookman Old Style Italic" size="25.0" />
+                                             </font>
+                                          </Label>
+                                          <Text layoutX="176.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doktor name" underline="true">
+                                             <font>
+                                                <Font name="Bookman Old Style Bold Italic" size="25.0" />
+                                             </font>
+                                          </Text>
+                                          <Pane layoutX="-2.0" layoutY="191.0" prefHeight="7.0" prefWidth="511.0" style="-fx-background-color: #000;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                             <padding>
+                                                <Insets top="5.0" />
+                                             </padding>
+                                          </Pane>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane prefHeight="489.0" prefWidth="467.0">
+                                       <children>
+                                          <Label layoutX="34.0" layoutY="37.0" text="Ime Prezime:" AnchorPane.bottomAnchor="428.6">
+                                             <font>
+                                                <Font name="Bookman Old Style Italic" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Text layoutX="189.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ime:" underline="true" AnchorPane.bottomAnchor="418.6">
+                                             <font>
+                                                <Font name="Bookman Old Style Bold Italic" size="20.0" />
+                                             </font>
+                                          </Text>
+                                          <Label layoutX="34.0" layoutY="137.0" text="JMBG:" AnchorPane.bottomAnchor="328.6">
+                                             <font>
+                                                <Font name="Bookman Old Style Italic" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Text layoutX="133.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ime:" underline="true" AnchorPane.bottomAnchor="316.961328125">
+                                             <font>
+                                                <Font name="Bookman Old Style Bold Italic" size="20.0" />
+                                             </font>
+                                          </Text>
+                                          <Label layoutX="34.0" layoutY="237.0" text="Odjel" AnchorPane.bottomAnchor="228.60000000000002">
+                                             <font>
+                                                <Font name="Bookman Old Style Italic" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Text layoutX="111.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ime:" underline="true" AnchorPane.bottomAnchor="216.96132812500002">
+                                             <font>
+                                                <Font name="Bookman Old Style Bold Italic" size="20.0" />
+                                             </font>
+                                          </Text>
+                                          <Label layoutX="34.0" layoutY="337.0" text="Opis" AnchorPane.bottomAnchor="128.60000000000002">
+                                             <font>
+                                                <Font name="Bookman Old Style Italic" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Text layoutX="111.0" layoutY="368.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ime:" underline="true" AnchorPane.bottomAnchor="116.96132812500002">
+                                             <font>
+                                                <Font name="Bookman Old Style Bold Italic" size="20.0" />
+                                             </font>
+                                          </Text>
+                                          <Pane layoutY="87.0" prefHeight="0.0" prefWidth="511.0" style="-fx-background-color: #fff;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                             <padding>
+                                                <Insets top="5.0" />
+                                             </padding>
+                                          </Pane>
+                                          <Pane layoutY="186.0" prefHeight="0.0" prefWidth="511.0" style="-fx-background-color: #fff;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                             <padding>
+                                                <Insets top="5.0" />
+                                             </padding>
+                                          </Pane>
+                                          <Pane layoutX="1.0" layoutY="287.0" prefHeight="0.0" prefWidth="511.0" style="-fx-background-color: #fff;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                             <padding>
+                                                <Insets top="5.0" />
+                                             </padding>
+                                          </Pane>
+                                          <Pane layoutX="-1.0" layoutY="386.0" prefHeight="5.0" prefWidth="514.0" style="-fx-background-color: #fff;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                             <padding>
+                                                <Insets top="5.0" />
+                                             </padding>
+                                          </Pane>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </VBox>
+                              <Pane prefHeight="690.0" prefWidth="7.0" style="-fx-background-color: #000;" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Doktor Inbox">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </Tab>
+            <Tab text="Doktor Pacijenti">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
 </AnchorPane>
