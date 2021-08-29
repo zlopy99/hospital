@@ -127,7 +127,7 @@ public class AddDoktorController implements Initializable {
 
     // Unos korisnika
     private void getQuery() {
-        query = "INSERT INTO `korisnik`(`Uloga`, `Korisnicko_ime`, `Lozinka`) VALUES (?,?,?)";
+        query = "INSERT INTO `korisnik`(`Uloga`, `Korisnicko_ime`, `Lozinka`) VALUES (?,?,PASSWORD(?))";
     }
     private void insert() {
         try {

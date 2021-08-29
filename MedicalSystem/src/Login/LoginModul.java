@@ -31,7 +31,8 @@ public class LoginModul {
         PreparedStatement prepS = null;
         ResultSet rs = null;
 
-        String querry = "SELECT * FROM korisnik where Korisnicko_ime = ? and Lozinka = ? and Uloga = ?";
+        // HASGBYTES('SHA1',lozinka) --> Enkripcija
+        String querry = "SELECT * FROM korisnik where Korisnicko_ime = ? and Lozinka = PASSWORD(?) and Uloga = ?";
 
         try{
             prepS = con.prepareStatement(querry);

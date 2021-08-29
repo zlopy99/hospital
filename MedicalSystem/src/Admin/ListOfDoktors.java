@@ -35,6 +35,10 @@ public class ListOfDoktors {
     }
 
     public String getPassword() {
+        return "ENCRIPTED";//Password.get();
+    }
+
+    public String getPassword2() {
         return Password.get();
     }
 

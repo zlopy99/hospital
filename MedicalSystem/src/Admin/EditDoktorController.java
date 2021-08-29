@@ -18,30 +18,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class EditDoktorController implements Initializable {
+public class EditDoktorController {
 
-    /*
-    @FXML
-    private TextField editImePrezime;
-
-    @FXML
-    private TextField editLozinka;
-
-    @FXML
-    private TextField editEmail;
-
-    @FXML
-    private TextField editGodiste;
-
-    @FXML
-    private TextField editPrebivaliste;
-
-    @FXML
-    private ComboBox<Spolovilo> editSpol;
-
-    @FXML
-    private TextField editOpis;
-     */
     @FXML
     private TextField editKorisnikIme;
 
@@ -67,7 +45,7 @@ public class EditDoktorController implements Initializable {
     String query = null;
     String query2 = null;
 
-    public void initialize(URL url, ResourceBundle resourceBundle) { }
+    //public void initialize(URL url, ResourceBundle resourceBundle) { }
 
     @FXML
     void cancelEdit(MouseEvent event) {
@@ -79,7 +57,7 @@ public class EditDoktorController implements Initializable {
     public void getSelection(String korisnik, String lozinka, String imeP, String odjel,
                              String opis){
         editKorisnikIme.setText(korisnik);
-        editLozinka.setText(lozinka);
+        editLozinka.setText(null);
         editImePrezime.setText(imeP);
         editOdjel.setText(odjel);
         editOpis.setText(opis);
@@ -129,7 +107,7 @@ public class EditDoktorController implements Initializable {
 
 
     private void getQuery1(){
-        query="UPDATE `korisnik` SET `Korisnicko_ime`=?,`Lozinka`=? WHERE `Korisnicko_ime` = ?";
+        query="UPDATE `korisnik` SET `Korisnicko_ime`=?,`Lozinka`=PASSWORD(?) WHERE `Korisnicko_ime` = ?";
     }
     private void edit1(){
         try {
@@ -160,6 +138,10 @@ public class EditDoktorController implements Initializable {
         }catch (Exception e){
             e.getMessage();
             System.out.println("Error4: "+e);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Lozinka mora biti minimum 6 znakova.");
+            alert.showAndWait();
         }
     }
 

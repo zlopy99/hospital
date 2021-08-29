@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 27, 2021 at 06:01 PM
+-- Generation Time: Aug 29, 2021 at 03:39 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -61,12 +61,12 @@ CREATE TABLE `korisnik` (
 --
 
 INSERT INTO `korisnik` (`korisnik_id`, `Korisnicko_ime`, `Lozinka`, `Uloga`) VALUES
-(1, 'VTZ99', '123456', 'Admin'),
-(2, 'Jure Bakula', 'Bakula123', 'Admin'),
-(3, 'Andro Raspudić', 'Raspudić123', 'Admin'),
-(4, 'MirkoM', 'Mirko123', 'Lijecnik'),
-(5, 'AnteA', 'Ante123', 'Lijecnik'),
-(12, 'MM667', '2326789', 'Lijecnik');
+(1, 'VTZ99', '*6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9', 'Admin'),
+(2, 'Jure Bakula', '*6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9', 'Admin'),
+(3, 'Andro Raspudić', '*6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9', 'Admin'),
+(4, 'MirkoM', '*EB4483FDAEC72E720F29075874984379B0709AD8', 'Lijecnik'),
+(5, 'AnteA', '*E7C76964038D47AE6AABB7D573B1F23BA50C598A', 'Lijecnik'),
+(15, 'IvaA', '*6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9', 'Lijecnik');
 
 -- --------------------------------------------------------
 
@@ -89,8 +89,8 @@ CREATE TABLE `liječnik` (
 
 INSERT INTO `liječnik` (`lijecnik_id`, `Ime_Prezime`, `JMBG`, `Opis`, `korisnik_id`, `odjel_id`) VALUES
 (3, 'Mirko Mirkić', 'JMBG123', NULL, 4, 1),
-(4, 'Ante Antić', 'JMBG987', 'Ante najjači doktur', 5, 2),
-(9, 'Makić Mirga', NULL, '', 12, 9);
+(4, 'Ante Antić', 'JA87ZT4', 'Ante najjači doktur', 5, 2),
+(12, 'Iva Ivić', NULL, 'Jedan bezveze opis.', 15, 12);
 
 -- --------------------------------------------------------
 
@@ -110,7 +110,7 @@ CREATE TABLE `odjel` (
 INSERT INTO `odjel` (`odjel_id`, `Naziv`) VALUES
 (1, 'Pedijatrija'),
 (2, 'Hematologija'),
-(9, 'Kirurgija');
+(12, 'Kirurgija');
 
 -- --------------------------------------------------------
 
@@ -199,19 +199,19 @@ ALTER TABLE `administrator`
 -- AUTO_INCREMENT for table `korisnik`
 --
 ALTER TABLE `korisnik`
-  MODIFY `korisnik_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `korisnik_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `liječnik`
 --
 ALTER TABLE `liječnik`
-  MODIFY `lijecnik_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `lijecnik_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `odjel`
 --
 ALTER TABLE `odjel`
-  MODIFY `odjel_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `odjel_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `pacijent`

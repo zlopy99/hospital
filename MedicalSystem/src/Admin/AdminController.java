@@ -184,7 +184,7 @@ public class AdminController implements Initializable{
             ObservableList<ListOfDoktors> Izabrani;
             Izabrani = DoktorTable.getSelectionModel().getSelectedItems();
             String pom1 = Izabrani.iterator().next().getUser_Name();
-            String pom2 = Izabrani.iterator().next().getPassword();
+            String pom2 = Izabrani.iterator().next().getPassword2();
             String pom3 = Izabrani.iterator().next().getIme_Prezime();
             String pom4 = Izabrani.iterator().next().getOdjel();
             String pom5 = Izabrani.iterator().next().getOpis();

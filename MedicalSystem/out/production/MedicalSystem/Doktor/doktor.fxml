@@ -25,9 +25,9 @@
                      <children>
                         <HBox prefHeight="690.0" prefWidth="1280.0">
                            <children>
-                              <VBox prefHeight="690.0" prefWidth="467.0" style="-fx-background-color: #83eeff;">
+                              <VBox prefHeight="690.0" prefWidth="467.0" style="-fx-background-color: #fff;">
                                  <children>
-                                    <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                    <AnchorPane prefHeight="191.0" prefWidth="467.0" style="-fx-background-color: #83eeff;">
                                        <children>
                                           <ImageView fitHeight="175.0" fitWidth="160.0" layoutX="14.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -44,9 +44,9 @@
                                                 <Font name="Bookman Old Style Italic" size="20.0" />
                                              </font>
                                           </Text>
-                                          <Pane layoutX="-2.0" layoutY="191.0" prefHeight="7.0" prefWidth="511.0" style="-fx-background-color: #000;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                          <Pane layoutX="-2.0" layoutY="191.0" prefHeight="2.0" prefWidth="511.0" style="-fx-background-color: #000;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                              <padding>
-                                                <Insets top="5.0" />
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                              </padding>
                                           </Pane>
                                           <Button fx:id="DokLogout" layoutX="335.0" layoutY="128.0" mnemonicParsing="false" onMouseClicked="#Logout" text="Logout">
@@ -56,7 +56,7 @@
                                           </Button>
                                        </children>
                                     </AnchorPane>
-                                    <AnchorPane prefHeight="489.0" prefWidth="467.0">
+                                    <AnchorPane prefHeight="489.0" prefWidth="467.0" style="-fx-background-color: #fff;">
                                        <children>
                                           <Label layoutX="34.0" layoutY="37.0" text="Ime Prezime:" underline="true" AnchorPane.bottomAnchor="428.6">
                                              <font>
@@ -98,22 +98,22 @@
                                                 <Font name="Bookman Old Style Italic" size="18.0" />
                                              </font>
                                           </Text>
-                                          <Pane layoutY="87.0" prefHeight="0.0" prefWidth="511.0" style="-fx-background-color: #fff;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                          <Pane layoutY="87.0" prefHeight="2.0" prefWidth="0.0" style="-fx-background-color: #000;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                              <padding>
                                                 <Insets top="5.0" />
                                              </padding>
                                           </Pane>
-                                          <Pane layoutY="186.0" prefHeight="0.0" prefWidth="511.0" style="-fx-background-color: #fff;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                          <Pane layoutY="186.0" prefHeight="2.0" prefWidth="0.0" style="-fx-background-color: #000;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                              <padding>
                                                 <Insets top="5.0" />
                                              </padding>
                                           </Pane>
-                                          <Pane layoutX="1.0" layoutY="287.0" prefHeight="0.0" prefWidth="511.0" style="-fx-background-color: #fff;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                          <Pane layoutX="1.0" layoutY="287.0" prefHeight="2.0" prefWidth="0.0" style="-fx-background-color: #000;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                              <padding>
                                                 <Insets top="5.0" />
                                              </padding>
                                           </Pane>
-                                          <Pane layoutX="-1.0" layoutY="386.0" prefHeight="5.0" prefWidth="514.0" style="-fx-background-color: #fff;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                          <Pane layoutX="-1.0" layoutY="386.0" prefHeight="2.0" prefWidth="0.0" style="-fx-background-color: #000;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                              <padding>
                                                 <Insets top="5.0" />
                                              </padding>
@@ -132,16 +132,25 @@
                                     </AnchorPane>
                                  </children>
                               </VBox>
-                              <Pane prefHeight="690.0" prefWidth="7.0" style="-fx-background-color: #000;" />
-                              <VBox prefHeight="690.0" prefWidth="806.0">
+                              <Pane prefHeight="690.0" prefWidth="2.0" style="-fx-background-color: #000;">
+                                 <padding>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </padding>
+                              </Pane>
+                              <VBox prefHeight="690.0" prefWidth="806.0" style="-fx-background-color: #fff;">
                                  <children>
-                                    <AnchorPane prefHeight="77.0" prefWidth="806.0" style="-fx-background-color: #0ed145;">
+                                    <AnchorPane prefHeight="77.0" prefWidth="806.0" style="-fx-background-color: #83eeff;">
                                        <children>
                                           <Label layoutX="21.0" layoutY="20.0" text="Uredite svoj profil:" underline="true">
                                              <font>
                                                 <Font name="Bookman Old Style Bold Italic" size="35.0" />
                                              </font>
                                           </Label>
+                                          <Pane layoutY="75.0" prefHeight="2.0" prefWidth="806.0" style="-fx-background-color: #000;">
+                                             <padding>
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                             </padding>
+                                          </Pane>
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane prefHeight="59.0" prefWidth="806.0">
@@ -196,7 +205,7 @@
                                           <Insets left="10.0" right="10.0" top="30.0" />
                                        </VBox.margin>
                                     </AnchorPane>
-                                    <AnchorPane layoutX="10.0" layoutY="265.0" prefHeight="59.0" prefWidth="806.0">
+                                    <AnchorPane layoutX="10.0" layoutY="265.0" prefHeight="110.0" prefWidth="786.0">
                                        <children>
                                           <Label layoutX="14.0" layoutY="14.0" text="Nova Lozinka:" underline="true">
                                              <font>
@@ -209,15 +218,18 @@
                                           <Insets left="10.0" right="10.0" top="30.0" />
                                        </VBox.margin>
                                     </AnchorPane>
-                                    <Pane prefHeight="10.0" prefWidth="806.0" style="-fx-background-color: #000;" />
-                                    <AnchorPane prefHeight="155.0" prefWidth="806.0" style="-fx-background-color: #0ed145;">
+                                    <Pane prefHeight="2.0" prefWidth="806.0" style="-fx-background-color: #fff;">
+                                       <padding>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </padding></Pane>
+                                    <AnchorPane prefHeight="162.0" prefWidth="806.0" style="-fx-background-color: #83eeff;">
                                        <children>
-                                          <Button fx:id="DokSave" layoutX="301.0" layoutY="53.0" mnemonicParsing="false" text="Spremi">
+                                          <Button fx:id="DokSave" layoutX="301.0" layoutY="53.0" mnemonicParsing="false" onAction="#SaveChanges" text="Spremi">
                                              <font>
                                                 <Font name="Bookman Old Style Bold Italic" size="25.0" />
                                              </font>
                                           </Button>
-                                          <Button fx:id="DokClear" layoutX="538.0" layoutY="53.0" mnemonicParsing="false" text="Očisti">
+                                          <Button fx:id="DokReturn" layoutX="538.0" layoutY="53.0" mnemonicParsing="false" onAction="#returnAll" text="Vrati">
                                              <font>
                                                 <Font name="Bookman Old Style Bold Italic" size="25.0" />
                                              </font>
@@ -234,7 +246,125 @@
           </Tab>
             <Tab text="Doktor Pacijenti">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <HBox prefHeight="692.0" prefWidth="1280.0">
+                           <children>
+                              <VBox prefHeight="690.0" prefWidth="467.0" style="-fx-background-color: #fff;">
+                                 <children>
+                                    <AnchorPane prefHeight="191.0" prefWidth="467.0" style="-fx-background-color: #83eeff;">
+                                       <children>
+                                          <ImageView fitHeight="175.0" fitWidth="160.0" layoutX="14.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@Images/Doctor.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label layoutX="159.0" layoutY="26.0" text="Korisničko ime:" underline="true">
+                                             <font>
+                                                <Font name="Bookman Old Style Bold Italic" size="25.0" />
+                                             </font>
+                                          </Label>
+                                          <Text fx:id="DoktorName" layoutX="263.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doktor name" AnchorPane.leftAnchor="263.0">
+                                             <font>
+                                                <Font name="Bookman Old Style Italic" size="20.0" />
+                                             </font>
+                                          </Text>
+                                          <Pane layoutX="-2.0" layoutY="191.0" prefHeight="2.0" prefWidth="511.0" style="-fx-background-color: #000;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                             <padding>
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                             </padding>
+                                          </Pane>
+                                          <Button fx:id="DokLogout1" layoutX="335.0" layoutY="128.0" mnemonicParsing="false" onMouseClicked="#Logout" text="Logout">
+                                             <font>
+                                                <Font name="Bookman Old Style Bold Italic" size="20.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane prefHeight="489.0" prefWidth="467.0" style="-fx-background-color: #fff;">
+                                       <children>
+                                          <Label layoutX="34.0" layoutY="37.0" text="Ime Prezime:" underline="true" AnchorPane.bottomAnchor="428.6">
+                                             <font>
+                                                <Font name="Bookman Old Style Bold Italic" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Text fx:id="ImePrezime1" layoutX="169.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ime:" AnchorPane.bottomAnchor="416.961328125" AnchorPane.leftAnchor="175.0">
+                                             <font>
+                                                <Font name="Bookman Old Style Italic" size="18.0" />
+                                             </font>
+                                          </Text>
+                                          <Label layoutX="34.0" layoutY="137.0" text="JMBG:" underline="true" AnchorPane.bottomAnchor="328.6">
+                                             <font>
+                                                <Font name="Bookman Old Style Bold Italic" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Text fx:id="JMBG1" layoutX="107.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ime:" AnchorPane.bottomAnchor="316.961328125" AnchorPane.leftAnchor="107.0">
+                                             <font>
+                                                <Font name="Bookman Old Style Italic" size="18.0" />
+                                             </font>
+                                          </Text>
+                                          <Label layoutX="34.0" layoutY="237.0" text="Odjel:" underline="true" AnchorPane.bottomAnchor="228.60000000000002">
+                                             <font>
+                                                <Font name="Bookman Old Style Bold Italic" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Text fx:id="Odjel1" layoutX="95.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ime:" AnchorPane.bottomAnchor="216.96132812500002" AnchorPane.leftAnchor="100.0">
+                                             <font>
+                                                <Font name="Bookman Old Style Italic" size="18.0" />
+                                             </font>
+                                          </Text>
+                                          <Label layoutX="34.0" layoutY="337.0" text="Opis:" underline="true" AnchorPane.bottomAnchor="128.60000000000002">
+                                             <font>
+                                                <Font name="Bookman Old Style Bold Italic" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Text fx:id="Opis1" layoutX="87.0" layoutY="368.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ime:" AnchorPane.bottomAnchor="116.96132812500002" AnchorPane.leftAnchor="92.0">
+                                             <font>
+                                                <Font name="Bookman Old Style Italic" size="18.0" />
+                                             </font>
+                                          </Text>
+                                          <Pane layoutY="87.0" prefHeight="2.0" prefWidth="0.0" style="-fx-background-color: #000;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                             <padding>
+                                                <Insets top="5.0" />
+                                             </padding>
+                                          </Pane>
+                                          <Pane layoutY="186.0" prefHeight="2.0" prefWidth="0.0" style="-fx-background-color: #000;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                             <padding>
+                                                <Insets top="5.0" />
+                                             </padding>
+                                          </Pane>
+                                          <Pane layoutX="1.0" layoutY="287.0" prefHeight="2.0" prefWidth="0.0" style="-fx-background-color: #000;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                             <padding>
+                                                <Insets top="5.0" />
+                                             </padding>
+                                          </Pane>
+                                          <Pane layoutX="-1.0" layoutY="386.0" prefHeight="2.0" prefWidth="0.0" style="-fx-background-color: #000;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                             <padding>
+                                                <Insets top="5.0" />
+                                             </padding>
+                                          </Pane>
+                                          <Label layoutX="33.0" layoutY="430.0" text="Lozinka:" underline="true">
+                                             <font>
+                                                <Font name="Bookman Old Style Bold Italic" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Text fx:id="Lozinka1" layoutX="130.0" layoutY="461.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ime:" AnchorPane.leftAnchor="130.0">
+                                             <font>
+                                                <Font name="Bookman Old Style Italic" size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </VBox>
+                              <Pane prefHeight="200.0" prefWidth="2.0" style="-fx-background-color: #000;">
+                                 <padding>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </padding>
+                              </Pane>
+                           </children>
+                        </HBox>
+                     </children></AnchorPane>
                </content>
             </Tab>
         </tabs>
