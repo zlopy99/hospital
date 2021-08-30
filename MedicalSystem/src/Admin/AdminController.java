@@ -241,7 +241,6 @@ public class AdminController implements Initializable{
             alert.setContentText("Želite li ukloniti doktora?");
             Optional<ButtonType>  result = alert.showAndWait();
             //System.out.println(result.get().getButtonData());
-            System.out.println(pomIzabrani);
 
             if(Lista.contains(pomIzabrani) && (result.get().getButtonData().toString().equalsIgnoreCase("OK_DONE"))){
 

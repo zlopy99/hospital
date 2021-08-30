@@ -1,7 +1,6 @@
 package Login;
 
 import Admin.AdminController;
-import Admin.EditDoktorController;
 import DataBase.DbConnection;
 import Doktor.DoktorController;
 import javafx.collections.FXCollections;
@@ -12,15 +11,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -85,14 +81,12 @@ public class Controller implements Initializable {
 
     public void DoktorLogin(){
         try {
-            //FXMLLoader doktorLoader = new FXMLLoader();
             Stage doktorStage = new Stage();
-            //Parent doktorRoot = FXMLLoader.load(getClass().getResource("/Doktor/doktor.fxml"));
-            //Pane doktorRoot = (Pane)doktorLoader.load(getClass().getResource("/Doktor/doktor.fxml").openStream());
             FXMLLoader doktorLoader = new FXMLLoader(getClass().getResource("/Doktor/doktor.fxml"));
             Parent doktorRoot = (Parent) doktorLoader.load();
 
             DoktorController doktorController = doktorLoader.getController();
+
             Connection con = DbConnection.getConnection();
             PreparedStatement prep = con.prepareStatement("SELECT korisnik_id FROM korisnik WHERE Korisnicko_ime LIKE ?");
             prep.setString(1,Username.getText());
@@ -118,10 +112,7 @@ public class Controller implements Initializable {
 
     public void AdminLogin(){
         try {
-            //FXMLLoader adminLoader = new FXMLLoader();
             Stage adminStage = new Stage();
-            //Parent adminRoot = FXMLLoader.load(getClass().getResource("/Admin/admin.fxml"));
-            //Pane adminRoot = (Pane)adminLoader.load(getClass().getResource("/Admin/admin.fxml").openStream());
             FXMLLoader adminLoader = new FXMLLoader(getClass().getResource("/Admin/admin.fxml"));
             Parent adminRoot = (Parent) adminLoader.load();
 

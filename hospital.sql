@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 29, 2021 at 03:39 PM
+-- Generation Time: Aug 31, 2021 at 12:12 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -41,7 +41,7 @@ CREATE TABLE `administrator` (
 INSERT INTO `administrator` (`administrator_id`, `Ime_Prezime`, `JMBG`, `id_korisnika`) VALUES
 (1, 'Vinko-Tino Zlopaša', '1629/RR', 1),
 (2, 'Jure Bakula', 'brojIndex', 2),
-(3, 'Andro Raspudić', 'brojIndex', 3);
+(3, 'Andro Raspudić', 'brojIndexx', 3);
 
 -- --------------------------------------------------------
 
@@ -122,9 +122,17 @@ CREATE TABLE `pacijent` (
   `pacijent_id` int(10) UNSIGNED NOT NULL,
   `Ime_Prezime` varchar(100) NOT NULL,
   `JMBG` varchar(14) NOT NULL,
-  `Zdravstveno_osiguranje` enum('DA','NE') DEFAULT NULL,
-  `Covid_cjepivo` enum('DA','NE') DEFAULT NULL
+  `Zdravstveno_osiguranje` enum('DA','NE') NOT NULL,
+  `Covid_cjepivo` enum('DA','NE') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pacijent`
+--
+
+INSERT INTO `pacijent` (`pacijent_id`, `Ime_Prezime`, `JMBG`, `Zdravstveno_osiguranje`, `Covid_cjepivo`) VALUES
+(1, 'Ana Anić', 'JMBG123', 'NE', 'DA'),
+(14, 'Neko ', 'JMk09', 'NE', 'NE');
 
 -- --------------------------------------------------------
 
@@ -136,8 +144,17 @@ CREATE TABLE `pregled` (
   `pregled_id` int(10) UNSIGNED NOT NULL,
   `id_lijecnika` int(10) UNSIGNED NOT NULL,
   `id_pacijenta` int(10) UNSIGNED NOT NULL,
-  `Opis` text DEFAULT NULL
+  `Opis` text DEFAULT NULL,
+  `Datum` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pregled`
+--
+
+INSERT INTO `pregled` (`pregled_id`, `id_lijecnika`, `id_pacijenta`, `Opis`, `Datum`) VALUES
+(1, 4, 1, 'Nešto se događa', '2021-08-04'),
+(15, 4, 14, 'ne znam', '2021-07-13');
 
 --
 -- Indexes for dumped tables
@@ -148,6 +165,7 @@ CREATE TABLE `pregled` (
 --
 ALTER TABLE `administrator`
   ADD PRIMARY KEY (`administrator_id`),
+  ADD UNIQUE KEY `JMBG` (`JMBG`),
   ADD KEY `id_korisnika` (`id_korisnika`);
 
 --
@@ -162,6 +180,7 @@ ALTER TABLE `korisnik`
 --
 ALTER TABLE `liječnik`
   ADD PRIMARY KEY (`lijecnik_id`),
+  ADD UNIQUE KEY `JMBG` (`JMBG`),
   ADD KEY `korisnik_id` (`korisnik_id`),
   ADD KEY `odjel_id` (`odjel_id`);
 
@@ -175,7 +194,8 @@ ALTER TABLE `odjel`
 -- Indexes for table `pacijent`
 --
 ALTER TABLE `pacijent`
-  ADD PRIMARY KEY (`pacijent_id`);
+  ADD PRIMARY KEY (`pacijent_id`),
+  ADD UNIQUE KEY `JMBG` (`JMBG`);
 
 --
 -- Indexes for table `pregled`
@@ -217,13 +237,13 @@ ALTER TABLE `odjel`
 -- AUTO_INCREMENT for table `pacijent`
 --
 ALTER TABLE `pacijent`
-  MODIFY `pacijent_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `pacijent_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `pregled`
 --
 ALTER TABLE `pregled`
-  MODIFY `pregled_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `pregled_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Constraints for dumped tables
@@ -246,8 +266,8 @@ ALTER TABLE `liječnik`
 -- Constraints for table `pregled`
 --
 ALTER TABLE `pregled`
-  ADD CONSTRAINT `pregled_ibfk_1` FOREIGN KEY (`id_lijecnika`) REFERENCES `liječnik` (`lijecnik_id`),
-  ADD CONSTRAINT `pregled_ibfk_2` FOREIGN KEY (`id_pacijenta`) REFERENCES `pacijent` (`pacijent_id`);
+  ADD CONSTRAINT `pregled_ibfk_1` FOREIGN KEY (`id_lijecnika`) REFERENCES `liječnik` (`lijecnik_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `pregled_ibfk_2` FOREIGN KEY (`id_pacijenta`) REFERENCES `pacijent` (`pacijent_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

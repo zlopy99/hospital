@@ -1,26 +1,26 @@
 package Doktor;
 
+import Admin.ListOfDoktors;
 import DataBase.DbConnection;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.Optional;
-import java.util.ResourceBundle;
 
 public class DoktorController {
 
@@ -61,6 +61,33 @@ public class DoktorController {
     private TextField editNovaLozinka;
 
     @FXML
+    private Text DokName;
+
+    @FXML
+    private TableView<ListOfPacjents> PacijentTable;
+
+    @FXML
+    private TableColumn<?, ?> LijecnikIDP;
+
+    @FXML
+    private TableColumn<?, ?> DatumP;
+
+    @FXML
+    private TableColumn<?, ?> PregledP;
+
+    @FXML
+    private TableColumn<?, ?> PacijentP;
+
+    @FXML
+    private TableColumn<?, ?> JMBGP;
+
+    @FXML
+    private TableColumn<?, ?> OsiguranjeP;
+
+    @FXML
+    private TableColumn<?, ?> CovidP;
+
+    @FXML
     private Button DokSave;
 
     @FXML
@@ -73,6 +100,167 @@ public class DoktorController {
     int DoktorID = 0;
     int OdjelID = 0;
     String lozinka = null;
+    private ObservableList<ListOfPacjents> pacijentiLista;
+
+    // Lista pacijenata
+    private void ispisPacijenata(){
+        try {
+            con = DbConnection.getConnection();
+            pacijentiLista = FXCollections.observableArrayList();
+            prepS = con.prepareStatement("SELECT liječnik.lijecnik_id, pregled.Datum, pregled.Opis, pacijent.Ime_Prezime, pacijent.JMBG, pacijent.Zdravstveno_osiguranje, pacijent.Covid_cjepivo " +
+                    "FROM liječnik JOIN pregled ON liječnik.lijecnik_id = pregled.id_lijecnika JOIN pacijent " +
+                    "ON pacijent.pacijent_id = pregled.id_pacijenta WHERE liječnik.lijecnik_id = ?");
+            prepS.setInt(1,DoktorID);
+            rs = prepS.executeQuery();
+            while (rs.next()){
+                pacijentiLista.add(new ListOfPacjents(rs.getInt(1),rs.getString(2),rs.getString(3), rs.getString(4),
+                        rs.getString(5),rs.getString(6),rs.getString(7)));
+            }
+            LijecnikIDP.setCellValueFactory(new PropertyValueFactory<>("DoktorID"));
+            DatumP.setCellValueFactory(new PropertyValueFactory<>("Datum"));
+            PregledP.setCellValueFactory(new PropertyValueFactory<>("Pregled"));
+            PacijentP.setCellValueFactory(new PropertyValueFactory<>("Pacijent"));
+            JMBGP.setCellValueFactory(new PropertyValueFactory<>("JMBG"));
+            OsiguranjeP.setCellValueFactory(new PropertyValueFactory<>("Osiguranje"));
+            CovidP.setCellValueFactory(new PropertyValueFactory<>("Cjepivo"));
+
+            PacijentTable.setItems(null);
+            PacijentTable.setItems(pacijentiLista);
+
+            prepS.close();
+            rs.close();
+            con.close();
+
+        }catch (Exception e){
+            e.getMessage();
+            System.out.println(e);
+        }
+    }
+
+    // Osviježi listu pacijenata
+    @FXML
+    private void OsvježiListu(javafx.scene.input.MouseEvent mouseEvent){
+        try {
+            con = DbConnection.getConnection();
+            pacijentiLista = FXCollections.observableArrayList();
+            prepS = con.prepareStatement("SELECT liječnik.lijecnik_id, pregled.Datum, pregled.Opis, pacijent.Ime_Prezime, pacijent.JMBG, pacijent.Zdravstveno_osiguranje, pacijent.Covid_cjepivo " +
+                    "FROM liječnik JOIN pregled ON liječnik.lijecnik_id = pregled.id_lijecnika JOIN pacijent " +
+                    "ON pacijent.pacijent_id = pregled.id_pacijenta WHERE liječnik.lijecnik_id = ?");
+            prepS.setInt(1,DoktorID);
+            rs = prepS.executeQuery();
+            while (rs.next()){
+                pacijentiLista.add(new ListOfPacjents(rs.getInt(1),rs.getString(2),rs.getString(3),
+                        rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7)));
+            }
+
+            PacijentTable.setItems(null);
+            PacijentTable.setItems(pacijentiLista);
+
+            prepS.close();
+            rs.close();
+            con.close();
+
+        }catch (Exception e){
+            e.getMessage();
+            System.out.println(e);
+        }
+    }
+
+    // Refresh
+    @FXML
+    private void refreshP(){
+        try {
+            pacijentiLista.clear();
+            con = DbConnection.getConnection();
+            pacijentiLista = FXCollections.observableArrayList();
+            prepS = con.prepareStatement("SELECT liječnik.lijecnik_id, pregled.Datum, pregled.Opis, pacijent.Ime_Prezime, pacijent.JMBG, pacijent.Zdravstveno_osiguranje, pacijent.Covid_cjepivo " +
+                    "FROM liječnik JOIN pregled ON liječnik.lijecnik_id = pregled.id_lijecnika JOIN pacijent " +
+                    "ON pacijent.pacijent_id = pregled.id_pacijenta WHERE liječnik.lijecnik_id = ?");
+            prepS.setInt(1,DoktorID);
+            rs = prepS.executeQuery();
+            while (rs.next()){
+                pacijentiLista.add(new ListOfPacjents(rs.getInt(1),rs.getString(2),rs.getString(3),
+                        rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7)));
+            }
+
+            PacijentTable.setItems(null);
+            PacijentTable.setItems(pacijentiLista);
+
+            prepS.close();
+            rs.close();
+            con.close();
+
+        }catch (Exception e){
+            e.getMessage();
+            System.out.println(e);
+        }
+    }
+
+    // Dodavanje Pacijenta
+    @FXML
+    private void addPacijenta(javafx.scene.input.MouseEvent mouseEvent) throws IOException {
+        //Parent parent = FXMLLoader.load(getClass().getResource("/Doktor/addPacijent.fxml"));
+
+        FXMLLoader pacijentLoader = new FXMLLoader(getClass().getResource("/Doktor/addPacijent.fxml"));
+        Parent pacijentRoot = (Parent) pacijentLoader.load();
+        AddPacijentController pacijentController = pacijentLoader.getController();
+        pacijentController.getID(DoktorID);
+
+        Scene scene = new Scene(pacijentRoot);
+        Stage stage = new Stage();
+        stage.setTitle("Pacijent Add");
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.show();
+    }
+
+    // Brisanje pacijenata
+    @FXML
+    public void BrisanjePacijenata(javafx.scene.input.MouseEvent mouseEvent){
+        try {
+            ObservableList<ListOfPacjents> Izabrani;
+            Izabrani = PacijentTable.getSelectionModel().getSelectedItems();
+            String pomIzabrani = Izabrani.iterator().next().getJMBG();
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText(null);
+            alert.setContentText("Želite li ukloniti pacijenta?");
+            Optional<ButtonType>  result = alert.showAndWait();
+            //System.out.println(result.get().getButtonData());
+            System.out.println(pomIzabrani);
+
+            if((result.get().getButtonData().toString().equalsIgnoreCase("OK_DONE"))){
+
+                String query = "DELETE FROM pacijent WHERE JMBG LIKE ?";
+                con = DbConnection.getConnection();
+                prepS = con.prepareStatement(query);
+                prepS.setString(1, pomIzabrani);
+                prepS.executeUpdate();
+
+                alert.close();
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText(null);
+                alert.setContentText("Uspješno ste uklonili pacijenta.");
+                alert.showAndWait();
+
+                prepS.close();
+                con.close();
+
+                refreshP();
+            }
+
+        }catch (Exception e){
+            e.getMessage();
+            System.out.println(e);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Izaberite koga želite ukloniti.");
+            alert.showAndWait();
+        }
+    }
+
+    // Edit pacijenta
 
     // Set Stuf up to eddit
     private void setStuffUp() {
@@ -81,10 +269,11 @@ public class DoktorController {
         editNoviodjel.setText(Odjel.getText());
         editNoviOpis.setText(Opis.getText());
         editNovaLozinka.setText(null);
+        DokName.setText(ImePrezime.getText());
     }
 
     // Doktor korisnicko ime
-    public void ImeDoktora(int DokID){
+    public void ImeDoktora(int DokID) {
         DokKorisnikID = DokID;
         try {
             con = DbConnection.getConnection();
@@ -121,6 +310,7 @@ public class DoktorController {
             prepS.close();
             rs.close();
 
+            ispisPacijenata();
             setStuffUp();
 
             con.close();
@@ -144,7 +334,7 @@ public class DoktorController {
     }
 
     // Return everything
-    public void returnAll(ActionEvent ae){
+    public void returnAll(ActionEvent ae) {
         setStuffUp();
     }
 
@@ -223,5 +413,4 @@ public class DoktorController {
             alert.showAndWait();
         }
     }
-
 }

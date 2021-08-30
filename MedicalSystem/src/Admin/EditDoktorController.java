@@ -16,6 +16,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class EditDoktorController {
@@ -85,10 +86,17 @@ public class EditDoktorController {
                 thirdSafeEdit();
 
                 if(jelSveOK == 3){
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setHeaderText(null);
-                    alert.setContentText("Uspiješno ste updetali doktora.");
-                    alert.showAndWait();
+                    Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert1.setHeaderText(null);
+                    alert1.setContentText("Želite li spremiti promijene?");
+                    Optional<ButtonType> result = alert1.showAndWait();
+
+                    if((result.get().getButtonData().toString().equalsIgnoreCase("OK_DONE"))){
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setHeaderText(null);
+                        alert.setContentText("Uspiješno ste updetali doktora.");
+                        alert.showAndWait();
+                    }
                 }
 
             }else {
