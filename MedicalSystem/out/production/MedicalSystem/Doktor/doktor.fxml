@@ -100,22 +100,22 @@
                                                 <Font name="Bookman Old Style Italic" size="18.0" />
                                              </font>
                                           </Text>
-                                          <Pane layoutY="87.0" prefHeight="2.0" prefWidth="0.0" style="-fx-background-color: #000;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                          <Pane layoutY="87.0" prefHeight="2.0" prefWidth="0.0" style="-fx-background-color: #83eeff;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                              <padding>
                                                 <Insets top="5.0" />
                                              </padding>
                                           </Pane>
-                                          <Pane layoutY="186.0" prefHeight="2.0" prefWidth="0.0" style="-fx-background-color: #000;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                          <Pane layoutY="186.0" prefHeight="2.0" prefWidth="0.0" style="-fx-background-color: #83eeff;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                              <padding>
                                                 <Insets top="5.0" />
                                              </padding>
                                           </Pane>
-                                          <Pane layoutX="1.0" layoutY="287.0" prefHeight="2.0" prefWidth="0.0" style="-fx-background-color: #000;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                          <Pane layoutX="1.0" layoutY="287.0" prefHeight="2.0" prefWidth="0.0" style="-fx-background-color: #83eeff;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                              <padding>
                                                 <Insets top="5.0" />
                                              </padding>
                                           </Pane>
-                                          <Pane layoutX="-1.0" layoutY="386.0" prefHeight="2.0" prefWidth="0.0" style="-fx-background-color: #000;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                          <Pane layoutX="-1.0" layoutY="386.0" prefHeight="2.0" prefWidth="0.0" style="-fx-background-color: #83eeff;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                              <padding>
                                                 <Insets top="5.0" />
                                              </padding>
@@ -134,7 +134,7 @@
                                     </AnchorPane>
                                  </children>
                               </VBox>
-                              <Pane prefHeight="690.0" prefWidth="2.0" style="-fx-background-color: #000;">
+                              <Pane prefHeight="690.0" prefWidth="2.0" style="-fx-background-color: #83eeff;">
                                  <padding>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </padding>
@@ -226,7 +226,7 @@
                                        </padding></Pane>
                                     <AnchorPane prefHeight="162.0" prefWidth="806.0" style="-fx-background-color: #83eeff;">
                                        <children>
-                                          <Button fx:id="DokSave" layoutX="301.0" layoutY="53.0" mnemonicParsing="false" onAction="#SaveChanges" text="Spremi">
+                                          <Button fx:id="DokSave" layoutX="300.0" layoutY="52.0" mnemonicParsing="false" onAction="#SaveChanges" text="Spremi">
                                              <font>
                                                 <Font name="Bookman Old Style Bold Italic" size="25.0" />
                                              </font>
@@ -315,17 +315,22 @@
                               <Font name="Bookman Old Style Bold Italic" size="20.0" />
                            </font>
                         </Label>
-                        <Label layoutX="468.0" layoutY="66.0" text="Pronađite Pacijenta:">
+                        <Label layoutX="467.0" layoutY="22.0" text="Pronađite Pacijenta:">
                            <font>
                               <Font name="Bookman Old Style Bold Italic" size="20.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="468.0" layoutY="95.0" prefHeight="26.0" prefWidth="216.0" />
+                        <TextField fx:id="PacijentTrazilica" layoutX="467.0" layoutY="65.0" prefHeight="26.0" prefWidth="216.0" />
                         <Text fx:id="DokName" layoutX="131.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doktor Name:" underline="true">
                            <font>
                               <Font name="Bookman Old Style Bold Italic" size="20.0" />
                            </font>
                         </Text>
+                        <Button layoutX="467.0" layoutY="90.0" mnemonicParsing="false" onMouseClicked="#TraziP" prefHeight="28.0" prefWidth="216.0" text="Pronađi">
+                           <font>
+                              <Font name="Bookman Old Style Bold Italic" size="15.0" />
+                           </font>
+                        </Button>
                      </children>
                   </AnchorPane>
                </content>

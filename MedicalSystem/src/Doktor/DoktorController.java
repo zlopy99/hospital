@@ -94,6 +94,9 @@ public class DoktorController {
     @FXML
     private Button DokReturn;
 
+    @FXML
+    private TextField PacijentTrazilica;
+
     Connection con = null;
     PreparedStatement prepS = null;
     ResultSet rs = null;
@@ -102,6 +105,7 @@ public class DoktorController {
     int OdjelID = 0;
     String lozinka = null;
     String pocetniJMBG = null;
+    String TrazenoIme = null;
     private ObservableList<ListOfPacjents> pacijentiLista;
 
     // Lista pacijenata
@@ -195,6 +199,52 @@ public class DoktorController {
         }catch (Exception e){
             e.getMessage();
             System.out.println(e);
+        }
+    }
+
+    // Tražilica Pacijenata
+    @FXML
+    private void TraziP(javafx.scene.input.MouseEvent mouseEvent){
+        try {
+            if(PacijentTrazilica.getText().isEmpty()){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("Upišite nešto u tražilicu.");
+                Optional<ButtonType>  result = alert.showAndWait();
+
+                refreshP();
+            }
+            else {
+                pacijentiLista.clear();
+                TrazenoIme = PacijentTrazilica.getText() + "%";
+                con = DbConnection.getConnection();
+                pacijentiLista = FXCollections.observableArrayList();
+                prepS = con.prepareStatement("SELECT liječnik.lijecnik_id, pregled.Datum, pregled.Opis, pacijent.Ime_Prezime, pacijent.JMBG, pacijent.Zdravstveno_osiguranje, pacijent.Covid_cjepivo " +
+                        "FROM liječnik JOIN pregled ON liječnik.lijecnik_id = pregled.id_lijecnika JOIN pacijent " +
+                        "ON pacijent.pacijent_id = pregled.id_pacijenta WHERE liječnik.lijecnik_id = ? AND pacijent.Ime_Prezime LIKE ?");
+                prepS.setInt(1,DoktorID);
+                prepS.setString(2,TrazenoIme);
+                rs = prepS.executeQuery();
+                while (rs.next()){
+                    pacijentiLista.add(new ListOfPacjents(rs.getInt(1),rs.getString(2),rs.getString(3),
+                            rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7)));
+                }
+                PacijentTable.setItems(null);
+                PacijentTable.setItems(pacijentiLista);
+
+                prepS.close();
+                rs.close();
+                con.close();
+            }
+
+        }catch (Exception e){
+            e.getMessage();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Upišite nešto u tražilicu");
+            Optional<ButtonType>  result = alert.showAndWait();
+
+            refreshP();
         }
     }
 

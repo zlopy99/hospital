@@ -49,11 +49,15 @@ public class AdminController implements Initializable{
     @FXML
     private Label Adminname;
 
+    @FXML
+    private TextField TrazeniDoktor;
+
     private ObservableList<ListOfDoktors> doktorList;
 
     Connection con = null;
     ResultSet rs = null;
     PreparedStatement ps = null;
+    String TDoktor = null;
 
     String query = "SELECT korisnik.Korisnicko_ime, korisnik.Lozinka, liječnik.Ime_Prezime, liječnik.Opis, odjel.Naziv " +
             "FROM korisnik join liječnik " +
@@ -127,6 +131,50 @@ public class AdminController implements Initializable{
             con.close();
         }catch (Exception e){
             e.getMessage();
+        }
+    }
+
+    // Tražilica doktora
+    @FXML
+    private void TraziD(javafx.scene.input.MouseEvent mouseEvent){
+        try {
+            if(TrazeniDoktor.getText().isEmpty()){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("Upišite nešto u tražilicu.");
+                Optional<ButtonType>  result = alert.showAndWait();
+            }
+            else {
+                doktorList.clear();
+                con = DbConnection.getConnection();
+                doktorList = FXCollections.observableArrayList();
+                TDoktor = TrazeniDoktor.getText() + "%";
+                ps = con.prepareStatement("SELECT korisnik.Korisnicko_ime, korisnik.Lozinka, liječnik.Ime_Prezime, liječnik.Opis, odjel.Naziv " +
+                        "FROM liječnik join korisnik " +
+                        "ON liječnik.korisnik_id = korisnik.korisnik_id join odjel " +
+                        "ON liječnik.odjel_id = odjel.odjel_id WHERE liječnik.Ime_Prezime LIKE ?");
+                ps.setString(1,TDoktor);
+                rs = ps.executeQuery();
+                while (rs.next()){
+                    doktorList.add(new ListOfDoktors(rs.getString(1),
+                            rs.getString(2), rs.getString(3),
+                            rs.getString(4), rs.getString(5)));
+                    DoktorTable.setItems(doktorList);
+                }
+
+                rs.close();
+                ps.close();
+                con.close();
+            }
+
+        }catch (Exception e){
+            e.getMessage();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Upišite nešto u tražilicu.");
+            Optional<ButtonType>  result = alert.showAndWait();
+
+            refresh();
         }
     }
 
