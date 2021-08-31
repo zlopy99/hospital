@@ -1,5 +1,6 @@
 package Doktor;
 
+import Admin.EditDoktorController;
 import Admin.ListOfDoktors;
 import DataBase.DbConnection;
 import javafx.collections.FXCollections;
@@ -100,6 +101,7 @@ public class DoktorController {
     int DoktorID = 0;
     int OdjelID = 0;
     String lozinka = null;
+    String pocetniJMBG = null;
     private ObservableList<ListOfPacjents> pacijentiLista;
 
     // Lista pacijenata
@@ -261,6 +263,55 @@ public class DoktorController {
     }
 
     // Edit pacijenta
+    @FXML
+    private void editPacijent(javafx.scene.input.MouseEvent mouseEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Doktor/editPacijent.fxml"));
+        Parent parent = (Parent) loader.load();
+        Scene scene = new Scene(parent);
+        Stage stage = new Stage();
+        stage.setTitle("Doktor Edit");
+        stage.setScene(scene);
+        stage.setResizable(false);
+        try {
+            con = DbConnection.getConnection();
+            ObservableList<ListOfPacjents> Izabrani;
+            Izabrani = PacijentTable.getSelectionModel().getSelectedItems();
+            String pom1 = Izabrani.iterator().next().getPacijent();
+            String pom2 = Izabrani.iterator().next().getJMBG();
+            String pom3 = Izabrani.iterator().next().getPregled();
+            String pom4 = Izabrani.iterator().next().getOsiguranje();
+            String pom5 = Izabrani.iterator().next().getCjepivo();
+            String pom6 = Izabrani.iterator().next().getDatum();
+            if(!Izabrani.isEmpty()){
+                stage.initModality(Modality.APPLICATION_MODAL);
+
+                EditPacijentController editControler = loader.getController();
+                editControler.getSelection(pom1, pom2, pom3, pom4, pom5, pom6);
+
+                stage.show();
+            }else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("Izaberite Pacijenta.");
+                alert.showAndWait();
+            }
+            con.close();
+
+        }catch (Exception e){
+            e.getMessage();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Izaberite Pacijenta.");
+            alert.showAndWait();
+        }
+    }
+
+    // PROFIL DOKTORA POČIMA
+    //          |
+    //          |
+    //          |
+    //         \|/
+    //          ˇ
 
     // Set Stuf up to eddit
     private void setStuffUp() {
@@ -270,6 +321,7 @@ public class DoktorController {
         editNoviOpis.setText(Opis.getText());
         editNovaLozinka.setText(null);
         DokName.setText(ImePrezime.getText());
+        pocetniJMBG = JMBG.getText();
     }
 
     // Doktor korisnicko ime
@@ -344,6 +396,7 @@ public class DoktorController {
         JMBG.setText(editNoviJMBG.getText());
         Odjel.setText(editNoviodjel.getText());
         Opis.setText(editNoviOpis.getText());
+        pocetniJMBG = editNoviJMBG.getText();
     }
 
     // Save changes
@@ -356,44 +409,119 @@ public class DoktorController {
                 alert.showAndWait();
             }else {
                 if (editNovaLozinka.getText().length() >= 6){
+                    /*
                     Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
                     alert1.setHeaderText(null);
                     alert1.setContentText("Želite li promijeniti podatke?");
                     Optional<ButtonType> result = alert1.showAndWait();
+                     */
 
-                    if (result.get().getButtonData().toString().equalsIgnoreCase("OK_DONE")){
-                        con = DbConnection.getConnection();
-                        prepS = con.prepareStatement("UPDATE `liječnik` SET " +
-                                "`Ime_Prezime`=?,`JMBG`=?," +
-                                "`Opis`=? WHERE korisnik_id = ? AND odjel_id = ?");
-                        prepS.setString(1,editNovoIme.getText());
-                        prepS.setString(2,editNoviJMBG.getText());
-                        prepS.setString(3,editNoviOpis.getText());
-                        prepS.setInt(4,DokKorisnikID);
-                        prepS.setInt(5,OdjelID);
-                        prepS.execute();
-                        prepS.close();
+                    // Gledamo JMBG
+                    con = DbConnection.getConnection();
+                    prepS = con.prepareStatement("SELECT JMBG FROM liječnik");
+                    rs = prepS.executeQuery();
+                    ArrayList<String> List = new ArrayList<String>();
+                    while (rs.next()){
+                        List.add(rs.getString(1));
+                    }
+                    rs.close();
+                    prepS.close();
+                    con.close();
 
-                        prepS = con.prepareStatement("UPDATE korisnik SET "+
-                                "Lozinka = PASSWORD(?) WHERE korisnik_id = ?");
-                        prepS.setString(1,editNovaLozinka.getText());
-                        prepS.setInt(2,DokKorisnikID);
-                        prepS.execute();
-                        prepS.close();
+                    if(List.contains(editNoviJMBG.getText())){
+                        if(!(editNoviJMBG.getText().equalsIgnoreCase(pocetniJMBG))){
+                            System.out.println(pocetniJMBG);
+                            Alert alert2 = new Alert(Alert.AlertType.ERROR);
+                            alert2.setHeaderText(null);
+                            alert2.setContentText("JMBG već postoji.");
+                            Optional<ButtonType> result2 = alert2.showAndWait();
+                        }else {
+                            System.out.println(pocetniJMBG);
+                            Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
+                            alert1.setHeaderText(null);
+                            alert1.setContentText("Želite li promijeniti podatke?");
+                            Optional<ButtonType> result = alert1.showAndWait();
+                            if (result.get().getButtonData().toString().equalsIgnoreCase("OK_DONE")){
+                                con = DbConnection.getConnection();
+                                prepS = con.prepareStatement("UPDATE `liječnik` SET " +
+                                        "`Ime_Prezime`=?,`JMBG`=?," +
+                                        "`Opis`=? WHERE korisnik_id = ? AND odjel_id = ?");
+                                prepS.setString(1,editNovoIme.getText());
+                                prepS.setString(2,editNoviJMBG.getText());
+                                prepS.setString(3,editNoviOpis.getText());
+                                prepS.setInt(4,DokKorisnikID);
+                                prepS.setInt(5,OdjelID);
+                                prepS.execute();
+                                prepS.close();
 
-                        prepS = con.prepareStatement("UPDATE odjel SET "+
-                                "Naziv = ? WHERE odjel_id = ?");
-                        prepS.setString(1,editNoviodjel.getText());
-                        prepS.setInt(2,OdjelID);
-                        prepS.execute();
-                        prepS.close();
+                                prepS = con.prepareStatement("UPDATE korisnik SET "+
+                                        "Lozinka = PASSWORD(?) WHERE korisnik_id = ?");
+                                prepS.setString(1,editNovaLozinka.getText());
+                                prepS.setInt(2,DokKorisnikID);
+                                prepS.execute();
+                                prepS.close();
 
-                        promijeni();
+                                prepS = con.prepareStatement("UPDATE odjel SET "+
+                                        "Naziv = ? WHERE odjel_id = ?");
+                                prepS.setString(1,editNoviodjel.getText());
+                                prepS.setInt(2,OdjelID);
+                                prepS.execute();
+                                prepS.close();
 
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setHeaderText(null);
-                        alert.setContentText("Uspiješno ste promijenili podatke.");
-                        alert.showAndWait();
+                                promijeni();
+
+                                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                alert.setHeaderText(null);
+                                alert.setContentText("Uspiješno ste promijenili podatke.");
+                                alert.showAndWait();
+                            }
+                        }
+                    }else {
+                        System.out.println(pocetniJMBG);
+                        Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
+                        alert1.setHeaderText(null);
+                        alert1.setContentText("Želite li promijeniti podatke?");
+                        Optional<ButtonType> result = alert1.showAndWait();
+                        if (result.get().getButtonData().toString().equalsIgnoreCase("OK_DONE")){
+                            try {
+                                con = DbConnection.getConnection();
+                                prepS = con.prepareStatement("UPDATE `liječnik` SET " +
+                                        "`Ime_Prezime`=?,`JMBG`=?," +
+                                        "`Opis`=? WHERE korisnik_id = ? AND odjel_id = ?");
+                                prepS.setString(1,editNovoIme.getText());
+                                prepS.setString(2,editNoviJMBG.getText());
+                                prepS.setString(3,editNoviOpis.getText());
+                                prepS.setInt(4,DokKorisnikID);
+                                prepS.setInt(5,OdjelID);
+                                prepS.execute();
+                                prepS.close();
+
+                                prepS = con.prepareStatement("UPDATE korisnik SET "+
+                                        "Lozinka = PASSWORD(?) WHERE korisnik_id = ?");
+                                prepS.setString(1,editNovaLozinka.getText());
+                                prepS.setInt(2,DokKorisnikID);
+                                prepS.execute();
+                                prepS.close();
+
+                                prepS = con.prepareStatement("UPDATE odjel SET "+
+                                        "Naziv = ? WHERE odjel_id = ?");
+                                prepS.setString(1,editNoviodjel.getText());
+                                prepS.setInt(2,OdjelID);
+                                prepS.execute();
+                                prepS.close();
+
+                                promijeni();
+
+                                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                alert.setHeaderText(null);
+                                alert.setContentText("Uspiješno ste promijenili podatke.");
+                                alert.showAndWait();
+
+                            }catch (Exception e){
+                                e.getMessage();
+                                System.out.println("Error1");
+                            }
+                        }
                     }
                 }else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
