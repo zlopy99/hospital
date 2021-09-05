@@ -300,6 +300,20 @@ public class AdminController implements Initializable{
                     IDodjel = pomRS.getInt(1);
                 }
 
+                PreparedStatement prep2 = con.prepareStatement("SELECT lijecnik_id FROM liječnik WHERE korisnik_id = ?");
+                prep2.setInt(1,IDkorisnik);
+                ResultSet pomRS2 = prep2.executeQuery();
+                int IDdoktor = 0;
+                while (pomRS2.next()){
+                    IDdoktor = pomRS2.getInt(1);
+                }
+                PreparedStatement prep3 = con.prepareStatement("delete from pacijent where pacijent.pacijent_id in (" +
+                        "    select id_pacijenta from pregled where pregled.id_lijecnika = ?" +
+                        "    )");
+                prep3.setInt(1,IDdoktor);
+                prep3.executeUpdate();
+
+
                 String query = "DELETE FROM korisnik WHERE Korisnicko_ime LIKE ?";
                 PreparedStatement stm = null;
                 stm = con.prepareStatement(query);

@@ -103,6 +103,7 @@ public class DoktorController {
     int DokKorisnikID = 0;
     int DoktorID = 0;
     int OdjelID = 0;
+    int PacijentID = 0;
     String lozinka = null;
     String pocetniJMBG = null;
     String TrazenoIme = null;
@@ -289,6 +290,25 @@ public class DoktorController {
                 prepS = con.prepareStatement(query);
                 prepS.setString(1, pomIzabrani);
                 prepS.executeUpdate();
+
+                /*
+                String query = "SELECT pacijent_id FROM pacijent WHERE JMBG LIKE ?";
+                con = DbConnection.getConnection();
+                prepS = con.prepareStatement(query);
+                prepS.setString(1, pomIzabrani);
+                rs = prepS.executeQuery();
+                while (rs.next()){
+                    PacijentID = rs.getInt(1);
+                }
+                rs.close();
+                prepS.close();
+                con.close();
+
+                String query2 = "DELETE FROM pregled WHERE id_pacijenta = ?";
+                con = DbConnection.getConnection();
+                prepS = con.prepareStatement(query2);
+                prepS.setInt(1, PacijentID);
+                prepS.executeUpdate();*/
 
                 alert.close();
                 alert = new Alert(Alert.AlertType.INFORMATION);
